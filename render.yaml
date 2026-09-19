@@ -1,0 +1,24 @@
+# Render blueprint — deploy Crazy Snooker App ด้วย Infrastructure as Code
+# วิธีใช้: push repo ขึ้น GitHub แล้วสร้าง Blueprint Instance บน Render ชี้มาที่ repo นี้
+services:
+  - type: web
+    name: crazy-snooker-app
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: node dist/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # ---- ตั้งค่าเองใน Render Dashboard หลัง deploy (อย่าใส่ค่าจริงในไฟล์นี้) ----
+      # DATABASE_URL            = mysql://avnadmin:****@xxx.aivencloud.com:12345/defaultdb
+      # DATABASE_SSL            = true          (Aiven บังคับ SSL)
+      # DATABASE_CA             = <Aiven CA cert PEM — ถ้าใส่จะตรวจ cert แบบเข้มงวด>
+      # JWT_SECRET              = <สุ่มยาวๆ สำหรับ cron session>
+      # ADMIN_FEEDBACK_KEY      = <รหัสแอดมินหน้า feedback>
+      # PROMPTPAY_RECIPIENT     = <เบอร์/เลข PromptPay ของร้าน>
+      # LINE_CHANNEL_ACCESS_TOKEN / LINE_NOTIFY_TO = <LINE OA>
+      # RESEND_API_KEY / RECEIPT_EMAIL_FROM      = <อีเมลใบเสร็จ (ทีหลังได้)>
+      # SECRETS_KEY             = <ถ้าใช้ config/secrets.enc.json — ปกติบน Render ใช้ env ตรงๆ สะดวกกว่า>

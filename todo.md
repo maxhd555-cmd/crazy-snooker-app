@@ -1,0 +1,90 @@
+# Project TODO
+
+- [x] Restore the Crazy Snooker application scaffold and prior source files after the project recovery issue.
+- [x] Add PromptPay QR generation and payment-state handling for POS checkout.
+- [x] Add PromptPay QR generation and wallet-top-up confirmation for club members.
+- [x] Add encrypted configuration for PromptPay recipient details and LINE OA messaging credentials.
+- [ ] Obtain and configure production PromptPay recipient and LINE OA credential values when the club is ready to enable live payments and messaging.
+- [x] Send LINE OA notification messages when a table booking is created.
+- [x] Add reliable near-end-of-session alerts and LINE OA delivery without relying on an in-process server timer.
+- [x] Add product barcode fields, barcode search, camera/scanner input, and POS cart integration.
+- [x] Add inventory receiving and adjustment workflows driven by barcode scanning.
+- [x] Verify a real LINE OA booking notification after production credentials are configured.
+- [x] Add user-visible camera scanning error handling for permission, device, and detector failures.
+- [x] Route a scanned inventory barcode to an explicit receive or adjustment action rather than the POS cart.
+- [x] Add unit tests for PromptPay, LINE notification, and barcode business logic.
+- [x] Verify the restored application, save a checkpoint, and prepare the upgrade for release.
+- [x] Correct the production build output structure so the deployment uploader can find its required public assets.
+- [x] Validate the corrected deployment build and create a publish-ready checkpoint.
+- [x] Create and validate a reusable Crazy Snooker application development skill.
+- [x] Repair the production runtime entrypoint so the deployed server starts successfully.
+- [x] Add real-time table-status display with clear available and occupied color states.
+- [x] Add printable payment receipts for completed POS transactions.
+- [x] Add customer email receipt composition and delivery workflow.
+- [x] Add searchable transaction history with date-range and payment-method filters.
+- [x] Add tests for table status, receipt data, and transaction-history filtering.
+- [ ] Configure a transactional-email provider for direct server-sent receipt delivery when credentials and a verified sender domain are available.
+- [ ] Verify end-to-end receipt email delivery from a completed transaction after the provider is configured.
+- [ ] Resume Resend credential setup and direct receipt-email verification when the club is ready to enable automated delivery.
+- [x] Verify the upgraded interface and production build, then save a publish-ready checkpoint.
+- [x] Create a Thai end-user manual covering POS, tables, bookings, inventory, receipts, and transaction history.
+- [x] Create and validate a reusable in-app help, onboarding-tour, and manual-PDF workflow skill.
+- [x] Add a global Help control that opens the Thai user manual in an accessible pop-up.
+- [x] Add a first-time interactive onboarding tour and a way to restart it from settings.
+- [x] Add a settings page with convenient PDF export of the Thai user manual.
+- [x] Add tests and visual verification for help, onboarding, settings, and PDF export behavior.
+- [x] Update and validate the reusable guided-support skill for help search, feedback capture, and progress bars.
+- [x] Add topic search and empty-state guidance to the Help pop-up.
+- [x] Add a structured report-problem and feedback form in the Help experience.
+- [x] Store submitted feedback safely and provide a clear submission status to the user.
+- [x] Add an accessible percentage progress bar to the Interactive Tour.
+- [x] Add tests and visual verification for help search, feedback reporting, and tour progress.
+- [x] Update and validate the reusable guided-support skill for admin feedback queues, explicit tour skipping, and Help tooltips.
+- [x] Add an admin feedback queue with filtering, report detail, and status updates.
+- [x] Add an explicit Skip Tour control with clear completion behavior.
+- [x] Add an accessible hover and keyboard tooltip for the Help control.
+- [x] Add tests and visual verification for feedback administration, tour skipping, and Help tooltip behavior.
+- [x] Protect the admin feedback UI and endpoints with a real internal-access gate before public exposure.
+- [x] Add automated coverage for admin filtering, report details, status validation, and status updates.
+- [x] Verify a real feedback report appears in the admin queue and that its status persists after an update.
+- [x] Verify Skip Tour persistence after reload and Help tooltip keyboard accessibility.
+- [x] Add deterministic tests for feedback-detail data handling and successful status-update persistence without seeding production data.
+- [x] Update and validate the reusable guided-support skill for new-report badges, internal notes, and Help-menu tour replay.
+- [x] Add an admin-menu badge that displays the count of new feedback reports.
+- [x] Add protected internal notes for each feedback report, including creation time and author context.
+- [x] Add a Help-menu action that restarts the interactive tour on demand.
+- [x] Add automated tests and visual verification for badges, internal notes, and Help-menu tour replay.
+- [x] Audit the remaining external-service prerequisites and safe configuration path for PromptPay, LINE OA, transactional email, and durable near-end notifications.
+- [x] Prepare the durable near-end notification integration according to the supported scheduling workflow, without enabling delivery until the required credentials and recipient rules are confirmed.
+- [x] Persist table sessions and introduce a one-minute scheduled near-end check with idempotent LINE notification tracking.
+- [x] Defer the LINE OA credential request and live-delivery verification until all non-secret scheduler work is complete.
+- [x] Configure and validate LINE Messaging API credentials and an addressable Push Message recipient securely.
+- [ ] Configure and validate a production PromptPay recipient for POS payments and member wallet top-ups.
+- [ ] Configure a transactional-email provider, verified sender, and safe direct receipt-delivery flow.
+- [x] Audit and improve non-secret operational usability without changing payment or email delivery configuration.
+- [x] Add a live remaining-time, near-end, and overdue indicator to occupied table cards with automated UI verification.
+- [x] Create and execute a recoverable UAT plan for POS, booking/LINE, table operations, inventory, history, Help, and admin feedback workflows.
+- [x] Record UAT results, defects, retest evidence, and any deferred configuration dependencies.
+- [x] Inventory every interactive control and create exhaustive recoverable test coverage for all available buttons, forms, dialogs, and navigation flows.
+- [x] Execute exhaustive UI/API tests, fix discovered defects, and record final coverage plus any configuration-blocked controls.
+- [x] Test all non-destructive UI controls, navigation, forms, dialogs, status changes, filters, downloads, Help, tours, tables, and admin workflows with recoverable automated coverage.
+- [x] Obtain confirmation and test the remaining live-action controls: booking/near-end LINE sends, payment confirmation, and receipt print/mail preparation, while documenting PromptPay configuration blockers.
+- [x] Add user-visible preflight readiness for PromptPay recipient and direct receipt-email delivery before requesting production credentials.
+- [x] Improve an additional daily operational workflow without relying on payment or transactional-email credentials.
+- [x] Add a filter-aware shift summary with per-payment-method totals and a printable staff review action.
+- [x] Execute and document a menu-by-menu verification pass for every navigable screen, including each control's success, validation, and recoverability outcomes.
+- [ ] Collect the verified PromptPay recipient identifier securely, validate it without disclosure, and run a non-monetary POS and Wallet QR readiness check before enabling store use.
+- [ ] Collect a verified transactional-email API key and sender address securely, then validate the direct receipt-email path before any approved delivery test.
+- [x] Verify the direct receipt-email API's safe unconfigured behavior, browser fallback, and production packaging while external email credentials remain deferred.
+- [x] Stabilize the admin new-report badge refresh and repeated UI verification so an authorized admin reliably sees newly created test reports.
+- [x] Stabilize the admin new-report badge refresh and repeated UI verification so an authorized admin reliably sees newly created test reports.
+- [x] Complete the post-deployment verification and close all safe non-secret work requested in the current continuation.
+- [x] Keep PromptPay recipient and transactional-email credentials as explicit blockers until the club supplies verified values and approves controlled live tests.
+
+- [x] Add a client-side CSV export for the currently filtered shift summary, preserving Thai labels and the active payment-method/date filters.
+
+- [ ] Resolve or obtain platform-side Cloud Run ServicesPerProject quota capacity before the next publish attempt; this is not a code defect and must not be marked complete from application changes alone.
+- [x] Verify the latest code with local tests/build without creating additional Cloud Run services while quota is exhausted.
+- [x] Prepare Render + Aiven free-tier deployment: render.yaml blueprint, /api/health endpoint, MySQL SSL pool (server/db.mjs), consolidated database/init.sql, .env.example, and Thai deploy guide (docs/deploy-render-aiven-th.md).
+- [x] Add encrypted configuration for PromptPay recipient details and LINE OA messaging credentials.
+

@@ -1,0 +1,10 @@
+.project-config.json
+config/secrets.enc.json
+.env
+test.log
+test-err.log
+build.log
+build-err.log
+node_modules/
+dist/
+*.log
