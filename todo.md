@@ -86,5 +86,7 @@
 - [ ] Resolve or obtain platform-side Cloud Run ServicesPerProject quota capacity before the next publish attempt; this is not a code defect and must not be marked complete from application changes alone.
 - [x] Verify the latest code with local tests/build without creating additional Cloud Run services while quota is exhausted.
 - [x] Prepare Render + Aiven free-tier deployment: render.yaml blueprint, /api/health endpoint, MySQL SSL pool (server/db.mjs), consolidated database/init.sql, .env.example, and Thai deploy guide (docs/deploy-render-aiven-th.md).
+- [x] Deploy to Render free (Singapore) + Aiven free MySQL and verify live: /api/health 200, 5 tables served from Aiven, table status write + read-back, feedback submit + admin counts with ADMIN_FEEDBACK_KEY.
+- [ ] Set up cron-job.org jobs: ping /api/health every 5 minutes (keep-alive) and call /api/scheduled/near-end-alerts every minute once LINE OA credentials are configured.
 - [x] Add encrypted configuration for PromptPay recipient details and LINE OA messaging credentials.
 

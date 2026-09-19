@@ -89,6 +89,26 @@ git push -u origin main
 
 ---
 
+## บทเรียนจากการ deploy จริง (สำคัญมาก ถ้า deploy ใหม่)
+
+1. **`NODE_ENV=production` ทำให้ `npm install` ข้าม devDependencies → build พังด้วย `vite: not found`**
+   → ต้องตั้ง build command เป็น **`npm install --include=dev && npm run build`** (ค่าตั้งต้นใน `render.yaml` แก้ไว้แล้ว)
+
+2. **Render API: `PUT /env-vars` แทนที่ env ทั้งชุด**
+   ถ้าเพิ่ม/แก้ env ผ่าน API ต้องส่ง **ทุกตัว** ไปในคำสั่งเดียว ไม่งั้นตัวที่ไม่ได้ส่งจะถูกลบ (บน Dashboard ทำทีละตัวไม่เป็นปัญหา)
+
+3. **หลังเปลี่ยน env ต้อง trigger deploy ใหม่** — Render จะหยิบค่าใหม่ตอนสร้าง instance เท่านั้น (`POST /services/{id}/deploys`)
+
+4. **ระหว่าง rollout อาจมี 2 instance ตอบพร้อมกันชั่วครู่** — ถ้า read-back ได้ค่าเก่า ให้รอ ~30 วินาทีแล้วยิงซ้ำ
+
+5. **Aiven + mysql2**: ต้องเปิด SSL (`DATABASE_SSL=true`) เพราะ Aiven บังคับ TLS; mysql client เก่าของ XAMPP เชื่อมไม่ได้ (plugin `caching_sha2_password` ไม่มี) → ใช้ `scripts/import-aiven-schema.mjs` แทน:
+   ```powershell
+   $env:DATABASE_URL="mysql://avnadmin:...@host:port/defaultdb"
+   node scripts/import-aiven-schema.mjs
+   ```
+
+---
+
 ## ⚠️ ข้อควรรู้ (Free tier)
 
 1. **Render free sleep หลัง 15 นาที** — cron keep-alive ในขั้นที่ 4 จัดการให้ แต่ถ้า cron ล่ม ครั้งแรกที่เปิดเว็บจะช้า ~50 วินาที (cold start) ไม่มีข้อมูลหาย
